@@ -1,0 +1,30 @@
+.todos-list {
+  margin: 0 auto;
+  width: 80%;
+  list-style: none;
+  padding-left: 0;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.todos-list-item {
+  border: 1px solid #000;
+  font-size: 24px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  transition: 0.2s;
+}
+
+.todos-list-item:hover {
+  font-size: 30px;
+}
+
+.todos-list-item p {
+  padding-left: 10px;
+  margin-bottom: 5px;
+}
+
+.todos-list-item-name {
+  padding: 5px 10px;
+  cursor: pointer;
+}

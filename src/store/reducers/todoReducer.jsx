@@ -1,16 +1,23 @@
-const initialState = {[{
-  name: "Buy a mleko",
-  date: new Date().toLocaleString(),
-  completed: false,
-}]};
+const initialState = {
+  todos: [
+    { name: "buy mleko", date: new Date().toLocaleString(), completed: false },
+    { name: "buy hlebo", date: new Date().toLocaleString(), completed: false },
+  ],
+};
 
 const todoReducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_TODO":
-      console.log(action.payload);
+      return { ...state, todos: [action.payload, ...state.todos] };
+    case "TOGGLE_COMPLETED":
+      console.log(state.todos);
       return {
         ...state,
-        note: state.concat([action.payload]),
+        todos: state.todos.map((item, index) => {
+          if (item[index] == action.payload) {
+            return { ...state, completed: !item.completed };
+          } else return item;
+        }),
       };
     default:
       return state;
