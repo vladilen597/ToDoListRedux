@@ -1,35 +1,27 @@
-import React, { Component } from "react";
-import "./Header.css";
+import React, { useEffect, useState } from "react";
+import "./Header.scss";
 
-class Header extends Component {
-  state = {
-    date: "",
-  };
+const Header = () => {
+  const [date, setDate] = useState("");
 
-  getDate = () => {
+  useEffect(() => {
     let date = new Date().toLocaleString();
 
-    this.setState({
-      date: date,
-    });
-  };
+    let timer = setInterval(() => {
+      setDate(date);
+    }, 1000);
 
-  componentDidMount() {
-    this.timer = setInterval(() => this.getDate(), 1000);
-  }
+    return () => {
+      clearInterval(timer);
+    };
+  }, [date]);
 
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
-
-  render() {
-    return (
-      <header className="header">
-        <h1>ToDo List</h1>
-        <time className="date">{this.state.date}</time>
-      </header>
-    );
-  }
-}
+  return (
+    <header className="header">
+      <h1>ToDo List</h1>
+      <time className="date">{date}</time>
+    </header>
+  );
+};
 
 export default Header;

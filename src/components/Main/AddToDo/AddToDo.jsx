@@ -1,34 +1,39 @@
-import React, { Component } from "react";
-import "./AddToDo.css";
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import addTodoAction from "../../../store/actions/addToDoAction.jsx";
+import "./AddToDo.scss";
 
-class AddToDo extends Component {
-  state = { name: "" };
+const AddToDo = ({ addTodo }) => {
+  const [name, setName] = useState("");
 
-  handleChange = (event) => {
-    this.setState({ name: event.target.value });
+  const handleChange = (event) => {
+    setName(event.target.value);
   };
 
-  render() {
-    return (
-      <form
-        className="add-todo-from"
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (this.state.name.length > 0) {
-            this.props.addTodo(this.state.name);
-          } else alert("Typo error!");
-        }}
-      >
-        <input
-          className="add-todo-input"
-          type="text"
-          placeholder="Enter what you want to do..."
-          onChange={this.handleChange}
-        />
-        <button className="add-todo-button">ADD</button>
-      </form>
-    );
-  }
-}
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (name.length > 0) {
+      addTodo(name);
+    } else alert("Typo error!");
+  };
 
-export default AddToDo;
+  return (
+    <form className="add-todo-from" onSubmit={handleSubmit}>
+      <input
+        className="add-todo-input"
+        type="text"
+        placeholder="Enter what you want to do..."
+        onChange={handleChange}
+      />
+      <button className="add-todo-button">ADD</button>
+    </form>
+  );
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addTodo: (name) => dispatch(addTodoAction(name)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(AddToDo);

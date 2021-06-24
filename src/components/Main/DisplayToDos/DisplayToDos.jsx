@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "./DisplayToDos.css";
+import "./DisplayToDos.scss";
 import trashcan from "../../../resourses/trashcan.png";
 import { connect } from "react-redux";
 import toggleCompleted from "../../../store/actions/toggleCompletedAction.jsx";
 import deleteToDo from "../../../store/actions/deleteToDoAction.jsx";
+import { Link } from "react-router-dom";
 
 const DisplayToDos = ({ todos, toggleCompleted, deleteToDo }) => {
   const [filterTodos, setFilteredTodos] = useState([]);
@@ -35,40 +36,54 @@ const DisplayToDos = ({ todos, toggleCompleted, deleteToDo }) => {
   return (
     <main>
       <ul className="todos-list">
-        {filterTodos.map((item, index) => {
-          return (
-            <li
-              key={index}
-              className={
-                item.completed ? "todos-list-item completed" : "todos-list-item"
-              }
-            >
-              <span
-                className="todos-list-item-name"
-                onClick={() => {
-                  toggleCompleted(index);
-                }}
-              >
-                {item.name}
-                <p>{item.date}</p>
-              </span>
-              <button
-                className="todos-list-item-delete"
-                onClick={() => {
-                  deleteToDo(index);
-                }}
-              >
-                <img src={trashcan} />
-              </button>
-            </li>
-          );
-        })}
+        {filterTodos.length === 0 ? (
+          <h2 className="todos-list-clear">
+            You have no appointments or tasks to do! Relax.
+          </h2>
+        ) : (
+          filterTodos.map((item, index) => {
+            return (
+              <Link to={"/" + item.name} className="todo-link">
+                <li
+                  key={index}
+                  className={
+                    item.completed
+                      ? "todos-list-item completed"
+                      : "todos-list-item"
+                  }
+                >
+                  <span
+                    className="todos-list-item-name"
+                    onClick={() => {
+                      toggleCompleted(index);
+                    }}
+                  >
+                    {item.name}
+                    <p>{item.date}</p>
+                  </span>
+                  <button
+                    className="todos-list-item-delete"
+                    onClick={() => {
+                      deleteToDo(index);
+                    }}
+                  >
+                    <img src={trashcan} />
+                  </button>
+                </li>
+              </Link>
+            );
+          })
+        )}
       </ul>
-      <section className="filter-buttons">
-        <button onClick={handleShowAllClick}>SHOW ALL</button>
-        <button onClick={handleShowCompletedClick}>SHOW COMPLETED</button>
-        <button onClick={handleShowIncompleted}>SHOW INCOMPLETED</button>
-      </section>
+      {filterTodos.length !== 0 ? (
+        <section className="filter-buttons">
+          <button onClick={handleShowAllClick}>SHOW ALL</button>
+          <button onClick={handleShowCompletedClick}>SHOW COMPLETED</button>
+          <button onClick={handleShowIncompleted}>SHOW INCOMPLETED</button>
+        </section>
+      ) : (
+        <></>
+      )}
     </main>
   );
 };

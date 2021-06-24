@@ -1,12 +1,11 @@
 import React from "react";
-import AddToDoConnected from "../../containers/AddToDoContainer.jsx";
-import DisplayToDos from "./DisplayToDos/DisplayToDos.jsx";
 import AddToDo from "./AddToDo/AddToDo.jsx";
+import DisplayToDos from "./DisplayToDos/DisplayToDos.jsx";
 
 const Main = () => {
   return (
     <div>
-      <AddToDoConnected />
+      <AddToDo />
       <DisplayToDos />
     </div>
   );

@@ -1,8 +1,8 @@
-const ADD_TODO = "ADD_TODO";
+import { TODO_OPERATION } from "../../constants/dictionary/TODO_OPERATION.jsx";
 
 const addTodoAction = (note) => {
   return {
-    type: ADD_TODO,
+    type: TODO_OPERATION.ADD_TODO,
     payload: {
       name: note,
       date: new Date().toLocaleString(),

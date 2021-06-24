@@ -1,8 +1,8 @@
-const TOGGLE_COMPLETED = "TOGGLE_COMPLETED";
+import { TODO_OPERATION } from "../../constants/dictionary/TODO_OPERATION.jsx";
 
 const toggleCompleted = (index) => {
   return {
-    type: TOGGLE_COMPLETED,
+    type: TODO_OPERATION.TOGGLE_COMPLETED,
     payload: index,
   };
 };

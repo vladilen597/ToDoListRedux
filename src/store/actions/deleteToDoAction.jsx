@@ -1,8 +1,8 @@
-const DELETE_TODO = "DELETE_TODO";
+import { TODO_OPERATION } from "../../constants/dictionary/TODO_OPERATION.jsx";
 
 const deleteToDo = (index) => {
   return {
-    type: DELETE_TODO,
+    type: TODO_OPERATION.DELETE_TODO,
     payload: index,
   };
 };
