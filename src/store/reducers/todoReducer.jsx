@@ -1,23 +1,22 @@
 const initialState = {
-  todos: [
-    { name: "buy mleko", date: new Date().toLocaleString(), completed: false },
-    { name: "buy hlebo", date: new Date().toLocaleString(), completed: false },
-  ],
+  todos: [],
 };
 
 const todoReducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_TODO":
-      return { ...state, todos: [action.payload, ...state.todos] };
+      return { todos: [action.payload, ...state.todos] };
     case "TOGGLE_COMPLETED":
-      console.log(state.todos);
       return {
-        ...state,
         todos: state.todos.map((item, index) => {
-          if (item[index] == action.payload) {
-            return { ...state, completed: !item.completed };
+          if (index == action.payload) {
+            return { ...state.todos[index], completed: !item.completed };
           } else return item;
         }),
+      };
+    case "DELETE_TODO":
+      return {
+        todos: state.todos.filter((item, index) => index !== action.payload),
       };
     default:
       return state;

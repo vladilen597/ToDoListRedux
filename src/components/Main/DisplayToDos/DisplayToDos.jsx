@@ -1,29 +1,87 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./DisplayToDos.css";
+import trashcan from "../../../resourses/trashcan.png";
+import { connect } from "react-redux";
+import toggleCompleted from "../../../store/actions/toggleCompletedAction.jsx";
+import deleteToDo from "../../../store/actions/deleteToDoAction.jsx";
 
-const DisplayToDos = ({ todos, toggleCompleted }) => {
-  console.log(todos);
+const DisplayToDos = ({ todos, toggleCompleted, deleteToDo }) => {
+  const [filterTodos, setFilteredTodos] = useState([]);
+
+  useEffect(() => {
+    setFilteredTodos(todos);
+  }, [todos]);
+
+  const handleShowAllClick = () => {
+    setFilteredTodos(todos);
+  };
+
+  const handleShowCompletedClick = () => {
+    setFilteredTodos(
+      todos.filter((item) => {
+        return item.completed === true;
+      })
+    );
+  };
+
+  const handleShowIncompleted = () => {
+    setFilteredTodos(
+      todos.filter((item) => {
+        return item.completed === false;
+      })
+    );
+  };
+
   return (
-    <ul className="todos-list">
-      <li>
-        {todos.todos.map((item, index) => {
+    <main>
+      <ul className="todos-list">
+        {filterTodos.map((item, index) => {
           return (
-            <li key={index} className="todos-list-item">
-              <div
+            <li
+              key={index}
+              className={
+                item.completed ? "todos-list-item completed" : "todos-list-item"
+              }
+            >
+              <span
                 className="todos-list-item-name"
                 onClick={() => {
                   toggleCompleted(index);
                 }}
               >
                 {item.name}
-              </div>
-              <p>{item.date}</p>
+                <p>{item.date}</p>
+              </span>
+              <button
+                className="todos-list-item-delete"
+                onClick={() => {
+                  deleteToDo(index);
+                }}
+              >
+                <img src={trashcan} />
+              </button>
             </li>
           );
         })}
-      </li>
-    </ul>
+      </ul>
+      <section className="filter-buttons">
+        <button onClick={handleShowAllClick}>SHOW ALL</button>
+        <button onClick={handleShowCompletedClick}>SHOW COMPLETED</button>
+        <button onClick={handleShowIncompleted}>SHOW INCOMPLETED</button>
+      </section>
+    </main>
   );
 };
 
-export default DisplayToDos;
+const mapStateToProps = (state) => {
+  return { todos: state.todos };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleCompleted: (id) => dispatch(toggleCompleted(id)),
+    deleteToDo: (id) => dispatch(deleteToDo(id)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DisplayToDos);

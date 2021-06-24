@@ -9,7 +9,7 @@ module.exports = {
     filename: "[name].js",
   },
   devServer: {
-    port: 3000,
+    port: 4000,
   },
   plugins: [new HTMLWebpackPlugin({ template: "./src/index.html" })],
   module: {
