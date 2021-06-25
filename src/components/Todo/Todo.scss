@@ -1,0 +1,40 @@
+.todo {
+    width: 90%;
+    margin: 0 auto;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana,
+        sans-serif;
+    font-size: 30px;
+    p {
+        font-size: 16px;
+        margin-bottom: 0;
+    }
+}
+
+.description {
+    display: flex;
+    width: 100%;
+}
+
+.description-textarea {
+    width: 90%;
+    height: 30vh;
+    border-radius: 10px;
+}
+
+.description-item {
+    width: 50%;
+}
+
+.todo-completed {
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana,
+        sans-serif;
+    display: flex;
+    height: 40px;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid #000;
+    margin-top: 35px;
+    width: 50%;
+    border-radius: 10px;
+}

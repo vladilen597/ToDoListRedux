@@ -4,10 +4,10 @@ import DisplayToDos from "./DisplayToDos/DisplayToDos.jsx";
 
 const Main = () => {
   return (
-    <div>
+    <main style={{ marginLeft: "100px" }}>
       <AddToDo />
       <DisplayToDos />
-    </div>
+    </main>
   );
 };
 

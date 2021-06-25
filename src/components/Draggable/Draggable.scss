@@ -1,0 +1,44 @@
+.draggable-types {
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    width: 12%;
+    height: 100vh;
+    background-color: #fff;
+    box-shadow: 0 0 10px 1px #000;
+    float: left;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana,
+        sans-serif;
+}
+
+.types-list {
+    margin-top: 150px;
+    list-style: none;
+    padding-left: 10px;
+    li {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+}
+
+.circle {
+    margin-right: 10px;
+    border: 2px solid #000;
+    width: 30px;
+    height: 30px;
+    border-radius: 16px;
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}
+
+.yellow {
+    background-color: yellow;
+}

@@ -5,8 +5,10 @@ const addTodoAction = (note) => {
     type: TODO_OPERATION.ADD_TODO,
     payload: {
       name: note,
+      description: "",
       date: new Date().toLocaleString(),
       completed: false,
+      type: "None",
     },
   };
 };

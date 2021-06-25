@@ -5,19 +5,22 @@
 }
 
 .add-todo-input {
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: 30px;
   padding: 10px;
   width: 80%;
   border-bottom-left-radius: 15px;
   border-top-left-radius: 15px;
   border: 1px solid #000;
+  border-right: none;
+  &:focus {
+    outline: none;
+    border: blue solid 2px;
+  }
 }
 
 .add-todo-button {
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   width: 20%;
   font-size: 30px;
   cursor: pointer;
